@@ -65,6 +65,11 @@
       #header a {
         color: inherit;
       }
+
+      :root {
+        --accent: #16a085;
+        --accent-hover: #1dd4b0;
+      }
     </style>
   </head>
   <body>
@@ -109,6 +114,14 @@
     </p>
   </body>
   <script>
+    function copyNotify() {
+      const element = document.getElementById('btn-copy');  
+      element.textContent = "Link copied!";  
+      setTimeout(() => {
+        element.textContent = "Copy";
+      }, 2000);
+    }
+
     if (document.getElementById('btn-copy')) {
       var btnCopy = document.getElementById('btn-copy');
       btnCopy.addEventListener('click', () => {
@@ -117,6 +130,7 @@
         navigator.clipboard.writeText(textToCopy)
         .then(() => {
           console.log('Text copied to clipboard:', textToCopy);
+          copyNotify();
         })
         .catch(err => {
           console.error('Failed to copy text:', err);
